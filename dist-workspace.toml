@@ -1,0 +1,34 @@
+[workspace]
+members = ["cargo:."]
+
+# Config for 'dist'
+[dist]
+# The preferred dist version to use in CI (Cargo.toml SemVer syntax)
+cargo-dist-version = "0.30.2"
+# CI backends to support
+ci = "github"
+# The installers to generate for each app
+installers = ["shell", "homebrew"]
+# The archive format to use for non-windows builds
+unix-archive = ".tar.gz"
+# Target platforms to build apps for (Rust target-triple syntax)
+# x86_64: Intel/AMD 64-bit (most common)
+# aarch64: ARM 64-bit (Apple Silicon, RPi 4+)
+targets = ["aarch64-apple-darwin", "aarch64-unknown-linux-gnu", "x86_64-apple-darwin", "x86_64-unknown-linux-gnu"]
+# Publish jobs to run in CI
+publish-jobs = ["homebrew"]
+
+# Publish to Homebrew tap
+[dist.publish]
+homebrew = ["kristoferlund/ostt"]
+
+# System dependencies for Homebrew
+[dist.dependencies.homebrew]
+ffmpeg = "*"
+openssl = "*"
+
+# Linux-specific dependencies
+[dist.dependencies.apt]
+ffmpeg = "*"
+libssl-dev = "*"
+libasound2-dev = "*"
