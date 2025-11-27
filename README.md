@@ -9,8 +9,6 @@
   Your browser does not support the video tag.
 </video>
 
-Configure any supported transcription model, authenticate with your preferred API provider, and access your transcription history anytime—all from an intuitive command-line interface.
-
 ## Features
 
 - Real-time waveform visualization with sparkline graphs
@@ -29,8 +27,7 @@ Configure any supported transcription model, authenticate with your preferred AP
 
 **Homebrew (Recommended):**
 ```bash
-brew tap kristoferlund/ostt
-brew install ostt
+brew install kristoferlund/ostt/ostt
 ```
 
 **Shell Installer:**
@@ -40,65 +37,37 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/kristoferlund/ostt/rele
 
 ### Linux
 
+**Arch Linux (AUR):**
+```bash
+yay -S ostt
+```
+
 **Shell Installer (All Distributions):**
 ```bash
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/kristoferlund/ostt/releases/latest/download/ostt-installer.sh | sh
 ```
 
-**Arch Linux (AUR):**
-```bash
-yay -S ostt
-# or
-git clone https://aur.archlinux.org/ostt.git
-cd ostt
-makepkg -si
-```
-
 ### Dependencies
 
-After installing ostt, install the required dependencies:
+Dependencies need only to be installed manually if you used the shell installer. `yay` and `brew` installs the dependencies automatically.
 
 **macOS:**
 ```bash
-brew install ffmpeg  # pbcopy is built-in
+ffmpeg
 ```
 
-**Linux (Debian/Ubuntu):**
+**Linux:**
 ```bash
-sudo apt install ffmpeg wl-clipboard  # For Wayland
+ffmpeg wl-clipboard  # For Wayland
 # OR
-sudo apt install ffmpeg xclip          # For X11
+ffmpeg xclip         # For X11
 ```
-
-**Linux (Arch):**
-```bash
-sudo pacman -S ffmpeg wl-clipboard     # For Wayland
-# OR
-sudo pacman -S ffmpeg xclip            # For X11
-```
-
-**Linux (Fedora):**
-```bash
-sudo dnf install ffmpeg wl-clipboard   # For Wayland
-# OR
-sudo dnf install ffmpeg xclip          # For X11
-```
-
-### Install from Source
-
-```bash
-git clone https://github.com/kristoferlund/ostt.git
-cd ostt
-cargo build --profile dist
-sudo cp target/dist/ostt /usr/local/bin/
-```
-
-**Build Prerequisites:**
-- Rust 1.70+ ([Install Rust](https://rustup.rs/))
 
 ## Quick Start
 
 After installation, set up authentication and start recording:
+
+**Authentication:** ostt is a bring-your-own-API-key application. You need an API key from either OpenAI or Deepgram. Authenticate once with your preferred provider, then freely switch between available models.
 
 ```bash
 # Configure your transcription provider
@@ -115,56 +84,17 @@ The app will create a default configuration file on first run at `~/.config/ostt
 
 ## Platform-Specific Setup
 
-### Hyprland / Omarchy - Floating Window Integration
+For the best experience, configure ostt to run as a floating popup window tied to a global hotkey. This allows you to:
 
-If you're using Hyprland (or Omarchy, which is built on Hyprland), ostt can work as a floating popup window for quick voice-to-text transcription from any application.
+1. Press a hotkey from any application
+2. Record your speech in a popup window
+3. Have it automatically transcribed
+4. Paste the result directly into your current app
 
-#### Setup (One-time)
+Platform-specific setup instructions:
 
-On first run, ostt automatically detects Hyprland and creates the integration script at `~/.local/bin/ostt-float`.
-
-Simply add this to your `~/.config/hypr/hyprland.conf`:
-
-```hyprland
-# ostt - Speech-to-Text hotkey
-bindd = SUPER, R, exec, bash ~/.local/bin/ostt-float
-
-# Window appearance (optional but recommended)
-windowrule = float, title:ostt
-windowrule = size 14% 8%, title:ostt
-windowrule = move 43% 90%, title:ostt
-```
-
-Then reload your config:
-
-```bash
-hyprctl reload
-```
-
-That's it! 
-
-#### Usage
-
-- **Press `Super+R`**: Opens ostt in a floating window and starts recording
-- **Speak your text**: Watch the waveform visualization
-- **Press `Super+R` again** (or `Enter`): Transcribes and copies to clipboard
-- **Paste with `Ctrl+V`**: Use the transcribed text anywhere
-
-#### Window Customization
-
-Adjust the window rules in your `hyprland.conf` to change size and position:
-
-```hyprland
-# Default: small window at bottom-center
-windowrule = size 14% 8%, title:ostt
-windowrule = move 43% 90%, title:ostt
-
-# Example: larger centered window
-windowrule = size 50% 30%, title:ostt
-windowrule = move 25% 35%, title:ostt
-```
-
-The terminal appearance can be customized by editing `~/.config/ostt/alacritty-float.toml`.
+- **[Hyprland / Omarchy Setup](environments/hyprland/README.md)** - Tiling window manager integration (recommended)
+- **[macOS Setup](environments/macOS/README.md)** - Hammerspoon-based popup configuration
 
 ### Other Platforms
 
