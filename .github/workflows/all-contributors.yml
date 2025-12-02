@@ -19,8 +19,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install all-contributors CLI
+        run: npm install -g all-contributors-cli
+
       - name: Add contributors
-        uses: akhilmhdh/contributors-readme-action@v2.3.6
+        run: all-contributors generate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
