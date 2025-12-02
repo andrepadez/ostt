@@ -14,16 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed `ostt-float.sh` script to correctly locate ostt binary when installed via package managers (Homebrew, AUR, shell installer)
 - Fixed Hyprland hotkey binding syntax in documentation - added missing description parameter for `bind` command
 
-### Changed
-
-- Removed PKGBUILD from main repository - now maintained separately in AUR repository
-- Enhanced platform-specific setup documentation for Hyprland/Omarchy and macOS
-- Improved README structure with clearer authentication and platform setup sections
-
 ### Migration Notes
 
 **Linux users upgrading from v0.0.2:**
-- Update `~/.local/bin/ostt-float` script: Re-run `ostt` once to regenerate the fixed script, or manually update using the [latest version](https://github.com/kristoferlund/ostt/blob/main/environments/hyprland/ostt-float.sh)
+- Update `~/.local/bin/ostt-float` script: Manually update using the [latest version](https://github.com/kristoferlund/ostt/blob/main/environments/hyprland/ostt-float.sh)
 - Update Hyprland hotkey binding in `~/.config/hypr/hyprland.conf`:
   ```diff
   - bind = SUPER, R, exec, bash ~/.local/bin/ostt-float
@@ -31,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   ```
 - Reload Hyprland config: `hyprctl reload`
 
-## [0.0.2] - 2025-12-01
+## [0.0.2] - 2025-11-28
 
 ### Added
 
@@ -44,6 +38,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cross-platform support (Linux and macOS)
 - Multiple installation methods (Homebrew, AUR, shell installer)
 
-[unreleased]: https://github.com/kristoferlund/ostt/compare/v0.0.3...HEAD
-[0.0.3]: https://github.com/kristoferlund/ostt/compare/v0.0.2...v0.0.3
-[0.0.2]: https://github.com/kristoferlund/ostt/releases/tag/v0.0.2
