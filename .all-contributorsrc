@@ -5,7 +5,19 @@
   "imageSize": 100,
   "commit": false,
   "commitConvention": "conventional",
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "kristoferlund",
+      "name": "Kristofer Lund",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1234567?v=4",
+      "profile_url": "https://github.com/kristoferlund",
+      "contributions": [
+        "code",
+        "ideas",
+        "infra"
+      ]
+    }
+  ],
   "contributorsPerLine": 7,
   "skipCi": true,
   "repoType": "github",
