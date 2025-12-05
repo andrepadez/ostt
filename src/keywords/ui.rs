@@ -275,7 +275,7 @@ impl KeywordsViewer {
 
         Self::render_keywords_list(frame, list_area, keywords, list_state);
 
-        let help_text = "↑↓ select, x/del remove, a add, q quit";
+        let help_text = "↑↓ select, x/del remove, a add, esc/q exit";
         let help_paragraph = Paragraph::new(help_text)
             .alignment(Alignment::Center)
             .style(Style::default().fg(HELP_FG));
