@@ -195,7 +195,18 @@ pub async fn run() -> Result<(), anyhow::Error> {
     }
 
     match command {
-        Command::Auth => commands::handle_auth().await?,
+        Command::Auth => {
+            if let Err(e) = commands::handle_auth().await {
+                // Check if it's a cancellation error (cliclack already displayed the message)
+                let err_msg = e.to_string();
+                if err_msg.contains("cancelled") || err_msg.contains("interrupted") {
+                    // Silent exit - cliclack already showed "Operation cancelled"
+                    process::exit(0);
+                } else {
+                    return Err(e);
+                }
+            }
+        }
         Command::Record => commands::handle_record().await?,
         Command::History => commands::handle_history().await?,
         Command::Keywords => commands::handle_keywords().await?,
