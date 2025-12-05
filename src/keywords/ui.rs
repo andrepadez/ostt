@@ -275,7 +275,7 @@ impl KeywordsViewer {
 
         Self::render_keywords_list(frame, list_area, keywords, list_state);
 
-        let help_text = "↑↓ select, x/del remove, a add, q quit";
+        let help_text = "↑↓ select, x/del remove, a add, esc/q exit";
         let help_paragraph = Paragraph::new(help_text)
             .alignment(Alignment::Center)
             .style(Style::default().fg(HELP_FG));
@@ -305,7 +305,7 @@ impl KeywordsViewer {
         frame.render_widget(&input_block, input_area);
         let input_inner = input_block.inner(input_area);
 
-        let input_widget = Paragraph::new(input_value).style(Style::default().fg(Color::Yellow));
+        let input_widget = Paragraph::new(input_value).style(Style::default().fg(Color::Rgb(255, 255, 255)));
         frame.render_widget(input_widget, input_inner);
 
         // Cursor position based on tui_input cursor

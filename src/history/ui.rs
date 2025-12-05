@@ -224,7 +224,7 @@ impl HistoryViewer {
             frame.render_stateful_widget(list, list_area, &mut self.list_state);
 
             // Render help footer
-            let help_text = "↑↓ select, ↵ copy, q quit";
+            let help_text = "↑↓ select, ↵ copy, esc/q exit";
             let help_paragraph = Paragraph::new(help_text)
                 .alignment(Alignment::Center)
                 .style(Style::default().fg(HELP_FG));
